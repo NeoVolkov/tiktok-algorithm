@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Generate TikTok X-Bogus and X-Gnarly signatures for API requests. Free online tool to calculate TikTok security parameters for web scraping and API integration."
+    />
+    <meta
+      name="keywords"
+      content="TikTok X-Bogus, TikTok X-Gnarly, TikTok API, TikTok signature generator, TikTok web scraping, TikTok security parameters"
+    />
+    <meta name="author" content="TikTok Algorithm Tools" />
+    <meta
+      property="og:title"
+      content="TikTok X-Bogus & X-Gnarly Generator - Free Online Tool"
+    />
+    <meta
+      property="og:description"
+      content="Generate TikTok X-Bogus and X-Gnarly signatures instantly. Essential tool for TikTok API integration and web scraping projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TikTok X-Bogus & X-Gnarly Generator" />
+    <meta
+      name="twitter:description"
+      content="Generate TikTok security signatures for API requests instantly and for free."
+    />
+    <title>TikTok X-Bogus & X-Gnarly Generator - Free Signature Tool</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        width: 100%;
+        padding: 40px;
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 2.2em;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .description {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 1.05em;
+        line-height: 1.8;
+      }
+
+      .description strong {
+        color: #764ba2;
+      }
+
+      .info-box {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 15px 20px;
+        margin-bottom: 25px;
+        border-radius: 5px;
+      }
+
+      .info-box h3 {
+        color: #333;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+      }
+
+      .info-box p {
+        color: #555;
+        font-size: 0.95em;
+        margin-bottom: 5px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1.05em;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: "Courier New", monospace;
+        resize: vertical;
+        min-height: 120px;
+        transition: all 0.3s ease;
+        background: #fafafa;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+      }
+
+      button:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .loading {
+        display: none;
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .loading.active {
+        display: block;
+      }
+
+      .spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #667eea;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .result {
+        display: none;
+        margin-top: 30px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border: 2px solid #667eea;
+      }
+
+      .result.active {
+        display: block;
+        animation: slideIn 0.4s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .result h3 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+      }
+
+      .result-item {
+        margin-bottom: 20px;
+      }
+
+      .result-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .result-item label {
+        color: #667eea;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .result-item textarea {
+        background: white;
+        font-size: 13px;
+        min-height: 60px;
+        border: 1px solid #ddd;
+        word-break: break-all;
+        overflow-wrap: break-word;
+      }
+
+      .copy-btn {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 6px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.85em;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: #218838;
+        transform: scale(1.05);
+      }
+
+      .copy-btn.copied {
+        background: #20c997;
+      }
+
+      .error {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff3cd;
+        border-left: 4px solid #ff6b6b;
+        border-radius: 5px;
+        color: #721c24;
+      }
+
+      .error.active {
+        display: block;
+        animation: shake 0.5s ease;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        75% {
+          transform: translateX(10px);
+        }
+      }
+
+      footer {
+        margin-top: 30px;
+        text-align: center;
+        color: #999;
+        font-size: 0.9em;
+      }
+
+      footer a {
+        color: #667eea;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+        color: #764ba2;
+      }
+
+      .footer-links {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .footer-links a {
+        display: inline-block;
+        margin: 5px 10px;
+        padding: 5px 12px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        font-size: 0.85em;
+      }
+
+      .footer-links a:hover {
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 25px;
+        }
+
+        h1 {
+          font-size: 1.6em;
+        }
+
+        .description {
+          font-size: 0.95em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎵 TikTok X-Bogus & X-Gnarly Generator</h1>
+
+      <p class="description">
+        Generate <strong>X-Bogus</strong> and <strong>X-Gnarly</strong> security
+        signatures for TikTok API requests. Essential tool for developers
+        working with TikTok's web API, data scraping, or integration projects.
+      </p>
+
+      <div class="info-box">
+        <h3>📋 How to Use:</h3>
+        <p>
+          <strong>1.</strong> Copy the full TikTok API request URL from your
+          browser's network tab
+        </p>
+        <p><strong>2.</strong> Paste the URL into the text area below</p>
+        <p>
+          <strong>3.</strong> Click "Generate Signatures" to get your X-Bogus
+          and X-Gnarly values
+        </p>
+        <p>
+          <strong>4.</strong> Use these values in your API requests for
+          authentication
+        </p>
+      </div>
+
+      <form id="signatureForm">
+        <div class="form-group">
+          <label for="urlInput">TikTok Request URL:</label>
+          <textarea
+            id="urlInput"
+            name="url"
+            placeholder="Paste your TikTok API URL here (e.g., https://www.tiktok.com/api/user/detail/?WebIdLastTime=...)"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">Generate Signatures</button>
+      </form>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 10px; color: #666">Generating signatures...</p>
+      </div>
+
+      <div class="error" id="error"></div>
+
+      <div class="result" id="result">
+        <h3>✅ Generated Signatures</h3>
+
+        <div class="result-item">
+          <label>
+            X-Gnarly:
+            <button
+              type="button"
+              class="copy-btn"
+              onclick="copyToClipboard('xgnarlyOutput', this)"
+            >
+              Copy
+            </button>
+          </label>
+          <textarea id="xgnarlyOutput" readonly></textarea>
+        </div>
+
+        <div class="result-item">
+          <label>
+            X-Bogus:
+            <button
+              type="button"
+              class="copy-btn"
+              onclick="copyToClipboard('xbogusOutput', this)"
+            >
+              Copy
+            </button>
+          </label>
+          <textarea id="xbogusOutput" readonly></textarea>
+        </div>
+      </div>
+
+      <footer>
+        <p>🔒 All processing is done securely. Your data is not stored.</p>
+        <p style="margin-top: 5px">Built with ❤️ for TikTok developers</p>
+
+        <div class="footer-links">
+          <a
+            href="https://github.com/NeoVolkov/tiktok-apis"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            🔗 GitHub Repository
+          </a>
+          <a
+            href="https://rapidapi.com/datahubapis1-datahubapis-default/api/tiktok-api45"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            🚀 TikTok API on RapidAPI
+          </a>
+        </div>
+
+        <p style="margin-top: 15px; font-size: 0.8em; color: #bbb">
+          Related Tools:
+          <a
+            href="https://neovolkov.github.io/tiktok-apis/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >🎵 TikTok API Demo</a
+          >
+          |
+          <a
+            href="https://rapidapi.com/datahubapis1-datahubapis-default/api/tiktok-api45"
+            target="_blank"
+            rel="noopener noreferrer"
+            >🎵 TikTok Data API</a
+          >
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      const API_ENDPOINT = "https://sig-url.kireda2509.workers.dev/";
+
+      document
+        .getElementById("signatureForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const urlInput = document.getElementById("urlInput").value.trim();
+          const submitBtn = document.getElementById("submitBtn");
+          const loading = document.getElementById("loading");
+          const result = document.getElementById("result");
+          const error = document.getElementById("error");
+
+          // Validate input
+          if (!urlInput) {
+            showError("Please enter a valid TikTok URL");
+            return;
+          }
+
+          // Reset UI
+          result.classList.remove("active");
+          error.classList.remove("active");
+          submitBtn.disabled = true;
+          loading.classList.add("active");
+
+          try {
+            const response = await fetch(API_ENDPOINT, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                url: urlInput,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            // Check if we have the expected data
+            if (
+              data &&
+              (data["X-Gnarly"] ||
+                data.xGnarly ||
+                data.xgnarly ||
+                data["X-Bogus"] ||
+                data.xBogus ||
+                data.xbogus)
+            ) {
+              // Handle different possible response formats
+              const xgnarly =
+                data["X-Gnarly"] ||
+                data.xGnarly ||
+                data.xgnarly ||
+                data["x-gnarly"] ||
+                "Not available";
+              const xbogus =
+                data["X-Bogus"] ||
+                data.xBogus ||
+                data.xbogus ||
+                data["x-bogus"] ||
+                "Not available";
+
+              document.getElementById("xgnarlyOutput").value = xgnarly;
+              document.getElementById("xbogusOutput").value = xbogus;
+
+              // Auto-resize textareas to fit content
+              setTimeout(() => {
+                const xgnarlyTextarea =
+                  document.getElementById("xgnarlyOutput");
+                const xbogusTextarea = document.getElementById("xbogusOutput");
+
+                xgnarlyTextarea.style.height = "auto";
+                xgnarlyTextarea.style.height =
+                  xgnarlyTextarea.scrollHeight + "px";
+
+                xbogusTextarea.style.height = "auto";
+                xbogusTextarea.style.height =
+                  xbogusTextarea.scrollHeight + "px";
+              }, 10);
+
+              result.classList.add("active");
+            } else {
+              throw new Error(
+                "Invalid response format from API. Expected xBogus and xGnarly fields."
+              );
+            }
+          } catch (err) {
+            console.error("Error:", err);
+
+            // Check if it's a CORS error
+            if (err.name === "TypeError" && err.message.includes("fetch")) {
+              showError(
+                `CORS Error: The API server is blocking requests from the browser. Please add CORS headers to your Cloudflare Worker (see instructions above).`
+              );
+            } else {
+              showError(
+                `Error: ${err.message}. Please check your URL and try again.`
+              );
+            }
+          } finally {
+            loading.classList.remove("active");
+            submitBtn.disabled = false;
+          }
+        });
+
+      function showError(message) {
+        const errorDiv = document.getElementById("error");
+        errorDiv.textContent = message;
+        errorDiv.classList.add("active");
+
+        setTimeout(() => {
+          errorDiv.classList.remove("active");
+        }, 5000);
+      }
+
+      function copyToClipboard(elementId, button) {
+        const textarea = document.getElementById(elementId);
+        textarea.select();
+        document.execCommand("copy");
+
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        button.classList.add("copied");
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove("copied");
+        }, 2000);
+      }
+
+      // Auto-resize textareas
+      document.querySelectorAll("textarea").forEach((textarea) => {
+        textarea.addEventListener("input", function () {
+          this.style.height = "auto";
+          this.style.height = this.scrollHeight + "px";
+        });
+      });
+    </script>
+  </body>
+</html>
