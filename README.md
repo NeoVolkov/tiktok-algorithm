@@ -11,6 +11,14 @@ Reverse-engineered **TikTok signing and encryption algorithms** — includes sup
 
 ---
 
+## 🌐 Live Demo
+
+### 👉 [**Try the X-Bogus & X-Gnarly Generator Online**](https://neovolkov.github.io/tiktok-algorithm/)
+
+Generate TikTok security signatures instantly in your browser — no installation required!
+
+---
+
 ## 🚀 Features
 
 ✅ Generate valid TikTok request signatures  
