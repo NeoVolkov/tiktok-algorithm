@@ -1,0 +1,28 @@
+{
+  "name": "tiktok-algorithm-reverse",
+  "version": "1.0.0",
+  "description": "TikTok Algorithm Decoder — includes X-Bogus, X-Gnarly, Signature, and MsToken generators. Reverse-engineered signing logic for TikTok API access.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "tiktok",
+    "tiktok algorithm",
+    "tiktok xbogus",
+    "tiktok x-gnarly",
+    "tiktok mstoken",
+    "tiktok signature",
+    "tiktok api sign",
+    "tiktok decoder",
+    "tiktok encryption",
+    "tiktok api key",
+    "rapidapi tiktok"
+  ],
+  "author": "NeoVolkov",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeoVolkov/tiktok-algorithm"
+  }
+}
