@@ -12,6 +12,10 @@
 You can reach out for collaboration or technical discussions via Telegram:  
 👉 [t.me/datahubconnect](https://t.me/datahubconnect)
 
+## 🌐 Live Demo
+
+### 👉 [**Try the X-Bogus & X-Gnarly Generator Online**](https://neovolkov.github.io/tiktok-algorithm/)
+
 ## Introduction to TikTok API Security
 
 TikTok and Douyin implement a layered, client-centric security model to prevent automated scraping and to validate that API requests originate from authentic client instances. Central to this model are **dynamic signature headers** attached to many private or semi-public endpoints. Without valid signatures, requests are rejected.
